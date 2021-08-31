@@ -154,8 +154,47 @@ const states = [
   },
 ];
 
+window.addEventListener("click", (ev) => {
+  console.log(ev.target.id);
+});
+
+function ListOfCities({ city, countC }) {
+  let countT = 1;
+  return (
+    <>
+      <details>
+        <summary id={"city" + countC}>{city.name}</summary>
+        {city.towns.map((town) => {
+          return <p id={"town" + countT++}>{town.name}</p>;
+        })}
+      </details>
+    </>
+  );
+}
+
+function ListOfStates({ state, countS }) {
+  let countC = 1;
+  return (
+    <>
+      <details>
+        <summary id={"state" + countS}>{state.name}</summary>
+        {state.cities.map((city) => {
+          return <ListOfCities city={city} countC={countC++} />;
+        })}
+      </details>
+    </>
+  );
+}
+
 function App() {
-  return <div id="main"></div>;
+  let countS = 1;
+  return (
+    <div id="main">
+      {states.map((state) => {
+        return <ListOfStates state={state} countS={countS++} />;
+      })}
+    </div>
+  );
 }
 
 export default App;
