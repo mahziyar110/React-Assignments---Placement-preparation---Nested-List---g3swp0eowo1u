@@ -154,10 +154,6 @@ const states = [
   },
 ];
 
-window.addEventListener("click", (ev) => {
-  console.log(ev.target.id);
-});
-
 function ListOfCities({ city, countC }) {
   let countT = 1;
   return (
