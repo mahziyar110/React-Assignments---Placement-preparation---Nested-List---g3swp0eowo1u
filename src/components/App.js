@@ -156,28 +156,36 @@ const states = [
 
 function ListOfCities({ city, countC }) {
   let countT = 1;
+  const [showTown, setShowTown] = useState(false);
   return (
     <>
-      <details>
-        <summary id={"city" + countC}>{city.name}</summary>
-        {city.towns.map((town) => {
-          return <p id={"town" + countT++}>{town.name}</p>;
+      <p onClick={() => setShowTown(!showTown)} id={"city" + countC}>
+        {city.name}
+      </p>
+      {showTown &&
+        city.towns.map((town) => {
+          return (
+            <p id={"town" + countT++} key={countT}>
+              {town.name}
+            </p>
+          );
         })}
-      </details>
     </>
   );
 }
 
 function ListOfStates({ state, countS }) {
   let countC = 1;
+  const [showCity, setShowCity] = useState(false);
   return (
     <>
-      <details>
-        <summary id={"state" + countS}>{state.name}</summary>
-        {state.cities.map((city) => {
-          return <ListOfCities city={city} countC={countC++} />;
+      <p onClick={() => setShowCity(!showCity)} id={"state" + countS}>
+        {state.name}
+      </p>
+      {showCity &&
+        state.cities.map((city) => {
+          return <ListOfCities city={city} countC={countC++} key={countC} />;
         })}
-      </details>
     </>
   );
 }
@@ -187,7 +195,7 @@ function App() {
   return (
     <div id="main">
       {states.map((state) => {
-        return <ListOfStates state={state} countS={countS++} />;
+        return <ListOfStates state={state} countS={countS++} key={countS} />;
       })}
     </div>
   );

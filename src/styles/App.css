@@ -14,22 +14,12 @@ button {
   background-color: pink;
 }
 
-details {
-  margin-top: 2px;
-  padding: 2px;
-}
-
-summary {
-  margin-top: 2px;
-  padding: 2px;
-}
-
 [id^="city"] {
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 [id^="town"] {
-  margin-left: 40px;
+  margin-left: 30px;
 }
 
 p {
